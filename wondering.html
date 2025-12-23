@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wonderful Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #0c0c0c, #1a1a2e);
+            color: white;
+            overflow-x: hidden;
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #fff;
+        }
+        .bio {
+            font-size: 1.2em;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .bio:hover {
+            color: #ffd700;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            background: #ffd700;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #ffed4e;
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="container">
+        <h1>Welcome to My Wonderful World</h1>
+        <p class="bio" onclick="toggleBio()">Click to learn about me</p>
+        <div id="bio-details" class="hidden">
+            <p>I'm a creative coder who loves building fun websites. Passionate about tech, art, and making the web a better place!</p>
+        </div>
+        <button onclick="generateCompliment()">Get a Random Compliment</button>
+        <p id="compliment"></p>
+        <footer>&copy; 2023 My Wonderful Site. Made with ❤️</footer>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Toggle bio
+        function toggleBio() {
+            const details = document.getElementById('bio-details');
+            details.classList.toggle('hidden');
+        }
+
+        // Generate random compliment
+        function generateCompliment() {
+            const compliments = [
+                "You're a coding superstar!",
+                "Your creativity shines brighter than the stars!",
+                "You're making the web wonderful!",
+                "Keep being awesome!"
+            ];
+            const random = compliments[Math.floor(Math.random() * compliments.length)];
+            document.getElementById('compliment').textContent = random;
+        }
+    </script>
+</body>
+</html>
